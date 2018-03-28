@@ -15,8 +15,22 @@
 
 </head>
 <body>
-    <form id="form1" runat="server">
+ 
+    <form id="form1" runat="server" >
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
+<header class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <asp:TextBox ID="TextBox1" runat="server" class="form-control mr-sm-2" type="text" placeholder="Search"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click1" class="btn btn-success btn btn-primary btn-sm" type="submit" />
+        <ajaxToolkit:RoundedCornersExtender ID="Button1_RoundedCornersExtender" runat="server" BehaviorID="Button1_RoundedCornersExtender" TargetControlID="Button1" />
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Show All" class="btn btn-success btn btn-primary btn-sm" type="submit" />
+         <ajaxToolkit:RoundedCornersExtender ID="Button2_RoundedCornersExtender" runat="server" BehaviorID="Button2_RoundedCornersExtender" TargetControlID="Button2" />
+         </header>   
+        <asp:Panel ID="PanelWarning" runat="server" Visible="False">
+                <div class="alert alert-warning" role="alert">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error!</strong> No results, please correct search criteria :)
+  </div>
+</asp:Panel>
         <asp:UpdateProgress runat="server" id="PageUpdateProgress">
             <ProgressTemplate>
                 Loading...
@@ -48,7 +62,7 @@
                                 <asp:Label ID="LabelEmail" runat="server" Text='<%# Eval("AuthorName") %>'></asp:Label>
                             </td>
                             <td>
-                                <asp:Label ID="LabelDate" runat="server"  Text='<%# Eval("DateAdded", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                <asp:Label ID="LabelDate" runat="server"  Text='<%#((Convert.ToDateTime(Eval("DateAdded"))).ToShortDateString()) %>'></asp:Label>
                             </td>              
                         </tr>
                     </ItemTemplate>
