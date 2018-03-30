@@ -11,15 +11,16 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
-{    protected void Page_Load(object sender, EventArgs e)
+{
+    protected void Page_Load(object sender, EventArgs e)
     {
         PanelWarning.Visible = false;
         //System.Threading.Thread.Sleep(5000);
         if (!Page.IsPostBack)
         {
-           
+
             getResults();
-         
+
         }
     }
 
@@ -52,7 +53,7 @@ public partial class _Default : System.Web.UI.Page
         try
 
         {
-            String URL = "http://localhost:55923/CDRestService.svc/GetSearchResults/"+searchName;
+            String URL = "http://localhost:55923/CDRestService.svc/GetSearchResults/" + searchName;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL);
             request.KeepAlive = false;
             WebResponse response = request.GetResponse();
@@ -70,11 +71,11 @@ public partial class _Default : System.Web.UI.Page
             {
                 if (table.Rows.Count <= 0)
                 {
-                      System.Diagnostics.Debug.WriteLine("empty");
+                    System.Diagnostics.Debug.WriteLine("empty");
                     PanelWarning.Visible = true;
 
                 }
-            
+
 
             }
 
